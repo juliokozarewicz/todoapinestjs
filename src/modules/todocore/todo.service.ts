@@ -30,7 +30,7 @@ export class todoCoreService {
 
         // insert in DB
         await this.insert(task, description)
-        
+
     }
 
 }
