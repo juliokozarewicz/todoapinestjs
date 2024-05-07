@@ -25,14 +25,17 @@ export class todoCoreService {
 
         // insert in DB
         const taskData = this.todoTasksEntity.create({ task, description });
-        return await this.todoTasksEntity.save(taskData);
+        await this.todoTasksEntity.save(taskData);
 
+        return { message: "Successfully created" };
     }
 
     async readTasks() {
 
         // get from DB
-        return await this.todoTasksEntity.find();
+        return await this.todoTasksEntity.find({
+            select: ["id", "task", "description"]
+        });
     }
 
     async updateTasks(body: any) {
@@ -51,7 +54,7 @@ export class todoCoreService {
 
         // update in DB
         const taskUpdate = await this.todoTasksEntity.findOne({ where: { id } });
-        
+
         if (!taskUpdate) {
             throw new NotFoundException(`Task not found`);
         }
@@ -59,7 +62,9 @@ export class todoCoreService {
         taskUpdate.task = task;
         taskUpdate.description = description;
 
-        return await this.todoTasksEntity.save(taskUpdate);
+        await this.todoTasksEntity.save(taskUpdate);
+
+        return { message: "updated successfully" };
     }
 
     async deleteTasks(body: any) {
@@ -77,8 +82,9 @@ export class todoCoreService {
             throw new NotFoundException(`Task not found`);
         }
 
-        return await this.todoTasksEntity.delete(id);
+        await this.todoTasksEntity.delete(id);
 
+        return { message: "successfully deleted" };
     }
 
 }

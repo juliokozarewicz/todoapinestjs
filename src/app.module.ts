@@ -9,10 +9,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'roundhouse.proxy.rlwy.net',
-      port: 23994,
+      host: 'monorail.proxy.rlwy.net',
+      port: 31046,
       username: 'postgres',
-      password: 'RxAlmvxHHPxIWAKcpGBwmMRspBxhIkPv',
+      password: 'zqKyCsbKtyocLOrgtBJdFkYGHBYFVnWv',
       database: 'railway',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true, // Atenção: em produção, mude para false e utilize migrações.
